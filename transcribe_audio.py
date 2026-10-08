@@ -1,16 +1,6 @@
-try:
-    import moviepy as moviepy  # type: ignore[reportMissingImports]
-except ImportError as exc:
-    raise RuntimeError(
-        "A biblioteca moviepy não está instalada. Instale com: pip install moviepy"
-    ) from exc
 import speech_recognition as sr
 import os
 
-
-def extract_audio_from_video(video_path, audio_path):
-    video = moviepy.VideoFileClip(video_path)
-    video.audio.write_audiofile(audio_path)
 
 def transcrive_audio_to_text(audio_path, text_output_path):
     recognizer = sr.Recognizer()
@@ -33,11 +23,9 @@ def transcrive_audio_to_text(audio_path, text_output_path):
 
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    video_path = os.path.join(script_dir, "video.mp4")
     audio_path = os.path.join(script_dir, "audio.wav")
-    text_output_path = os.path.join(script_dir, "transcription.txt")
+    text_output_path = os.path.join(script_dir, "transcription1.txt")
 
-    extract_audio_from_video(video_path, audio_path)
     transcrive_audio_to_text(audio_path, text_output_path)
 
 if __name__ == "__main__":
